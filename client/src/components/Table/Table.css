@@ -1,0 +1,27 @@
+table {
+  overflow-x: scroll;
+  padding-top: 1em;
+  padding-bottom: 2em;
+}
+caption {
+  font-size: 24px;
+}
+th {
+  padding: 0.5em;
+  text-align: center;
+
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  border-right: 1px solid #000000;
+}
+th:first-of-type, td:first-of-type{
+  border-left: 1px solid #000000;
+}
+td {
+  width: 200px;
+  padding: 0.5em;
+  text-align: center;
+
+  border-bottom: 1px solid #000000;
+  border-right: 1px solid #000000;
+}

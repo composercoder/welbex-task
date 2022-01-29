@@ -1,0 +1,25 @@
+form {
+  padding-bottom: 2em;
+}
+
+legend {
+  font-size: 20px;
+  padding-bottom: 0.5em;
+}
+
+.submit-button {
+  padding: 0.4em 1.2em;
+  font-weight: bold;
+  color: #fffaeb;
+  background-color: #777777;
+  border: 1px solid #fffaeb;
+  cursor: pointer;
+
+  transition-duration: 0.3s;
+}
+
+.submit-button:hover {
+  color: #777777;
+  border-color: #777777;
+  background-color: #fffaeb;
+}
