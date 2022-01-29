@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './Arrows.css';
 
 export default function Arrows({allowedToTurnPage, changeIsTimeToTurnPage}) {

@@ -4,7 +4,7 @@ import Input from '../Input/Input';
 import Select from '../Select/Select';
 import SubmitButton from '../SubmitButton/SubmitButton';
 
-function Form({filterParams, setFilterParams, tablePageOffset, tablePageSize, setIsTimeToFetchTableData, pageTurned}) {
+function Form({filterParams, createFilterParamsString, tablePageOffset, tablePageSize, isTimeToTurnPage, changeIsTimeToFetchData}) {
   const [filterParameter, setFilterParameter] = useState({
     id: 'filter-parameter-select',
     selectedOption: 'name'
@@ -16,7 +16,7 @@ function Form({filterParams, setFilterParams, tablePageOffset, tablePageSize, se
   const [filterValue, setFilterValue] = useState('');
   const [submitDisabled, setSubmitDisabled] = useState(false);
 
-  if (pageTurned) {
+  if (isTimeToTurnPage) {
     handleSubmit();
   }
 
@@ -44,9 +44,8 @@ function Form({filterParams, setFilterParams, tablePageOffset, tablePageSize, se
       event.preventDefault()
     }
     validateInput(filterValue);
-    // set filter params
-    setTimeout(() => {console.log(filterParams)}, 1000);
-    setIsTimeToFetchTableData(true);
+    createFilterParamsString(filterParameter, filterCondition, filterValue);
+    changeIsTimeToFetchData(true);
   }
 
   return (

@@ -40,11 +40,11 @@ export default function App() {
   function changeAllowanceToTurnPage(newAllowance) {
     setAllowedToTurnPage(newAllowance);
   }
-  function changeIsTimeToTurnPage(direction, isTime) {
+  function changeIsTimeToTurnPage(arrow, isTime) {
     if (isTime) {
-      turnPage(direction, isTime);
+      turnPage(arrow, changeIsTimeToFetchData, tablePageOffset, changeTablePageOffset, tablePageSize);
     }
-    setIsTimeToTurnPage(isTime);
+    setIsTimeToTurnPage(false);
   }
 
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function App() {
           setIsTimeToTurnPage(false);
         })
     }
-  }, [isTimeToFetchTableData, pageTurned]);
+  }, [isTimeToFetchTableData, isTimeToTurnPage]);
 
   function Content() {
     if (loading) {
@@ -64,7 +64,7 @@ export default function App() {
 
     return (
       <>
-        <Form filterParams={filterParams} setFilterParams={setFilterParams} tablePageOffset={tablePageOffset} tablePageSize={tablePageSize} setIsTimeToFetchTableData={setIsTimeToFetchTableData} pageTurned={pageTurned} />
+        <Form filterParams={filterParams} createFilterParamsString={createFilterParamsString} tablePageOffset={tablePageOffset} tablePageSize={tablePageSize} isTimeToTurnPage={isTimeToTurnPage} changeIsTimeToFetchData={changeIsTimeToFetchData} />
         { error ? <Error message={error ? error : "Что-то пошло не так, попробуйте перезагрузить страницу"}  /> : (<>
           <Table data={tableData} />
           <Arrows allowedToTurnPage={allowedToTurnPage} changeIsTimeToTurnPage={changeIsTimeToTurnPage} />

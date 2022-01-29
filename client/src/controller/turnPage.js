@@ -1,11 +1,11 @@
-export default function turnPage(direction, isTimeToFetchTableData, setIsTimeToFetchTableData, tablePageOffset, setTablePageOffset, tablePageSize) {
-  const offset = calcOffset(direction, tablePageOffset, tablePageSize) || 0;
-  setTablePageOffset(offset);
-  setIsTimeToFetchTableData(true);
+export default function turnPage(arrow, changeIsTimeToFetchData, tablePageOffset, changeTablePageOffset, tablePageSize) {
+  const offset = calcOffset(arrow, tablePageOffset, tablePageSize) || 0;
+  changeTablePageOffset(offset);
+  changeIsTimeToFetchData(true);
 }
 
-function calcOffset(direction, tablePageOffset, tablePageSize) {
-  if (direction === 'right') {
+function calcOffset(arrow, tablePageOffset, tablePageSize) {
+  if (arrow === 'arrow-right') {
     return tablePageOffset + tablePageSize;
   } else {
     return tablePageOffset - tablePageSize;
