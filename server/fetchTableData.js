@@ -35,8 +35,9 @@ console.log(request.query);
 }
 
 function removeLastDataElement(arr) {
-  arr.pop();
-  return arr;
+  const newArr = [...arr];
+  newArr.pop();
+  return newArr;
 }
 
 
