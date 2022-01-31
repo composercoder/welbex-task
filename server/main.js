@@ -1,5 +1,5 @@
 const express = require('express');
-const fetchTableData = require('./fetchTableData');
+const fetchTableData = require('./modules/fetchTableData');
 const PORT = 5000;
 
 const app = express();
