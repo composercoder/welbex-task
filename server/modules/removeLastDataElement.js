@@ -1,7 +1,10 @@
 function removeLastDataElement(arr) {
-  const newArr = [...arr];
-  newArr.pop();
-  return newArr;
+  if (arr.length === 13) {
+    const newArr = [...arr];
+    newArr.pop();
+    return newArr;
+  }
+  return arr;
 }
 
 module.exports = removeLastDataElement;
