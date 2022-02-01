@@ -5,10 +5,9 @@ const createFilter = require('./createFilter');
 const sendNotFound = require('./sendNotFound');
 
 function fetchTableData(request, response) {
-const filter = Object.keys(request.query).length === 0 ? '' : createFilter(request.query);
-const pagination = ' OFFSET ' + (request.query.offset || 0) + ' LIMIT ' + ((+request.query.limit + 1) || 13);
-console.log(filter + pagination);
-console.log(request.query);
+  console.log(request.query);
+  const filter = Object.keys(request.query).length === 0 ? '' : createFilter(request.query);
+  const pagination = ' OFFSET ' + (request.query.offset || 0) + ' LIMIT ' + ((+request.query.limit + 1) || 13);
 
   response.set({
     'Content-Type': 'application/json',
@@ -19,8 +18,8 @@ console.log(request.query);
     .then((data) => {
       if (data.rows.length !== 0) {
         response.status(200).send(JSON.stringify({
-          allowedToTurnLeft: setPageTurnAllowance(request.query, 'left'),
-          allowedToTurnRight: setPageTurnAllowance(request.query, 'right'),
+          allowedToTurnLeft: setPageTurnAllowance(request.query, data.rows, 'left'),
+          allowedToTurnRight: setPageTurnAllowance(request.query, data.rows, 'right'),
           data: removeLastDataElement(data.rows)
         }));
         response.end();
@@ -29,6 +28,7 @@ console.log(request.query);
       }
     })
     .catch((err) => {
+      console.error(err);
       sendNotFound(response);
     })
 }
