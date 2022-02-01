@@ -1,20 +1,33 @@
-function setPageTurnAllowance(query, direction) {
+function setPageTurnAllowance(query, dataRows, direction) {
+
   switch(direction) {
     case 'left':
-      if (query.offset && query.limit) {
-        (Number(query.offset) - Number(query.limit)) > 0;
-      } else {
-        return false;
+      if (checkParams([query.offset, query.limit])) {
+        return (Number(query.offset) - Number(query.limit)) > 0;
       }
+      return false;
+
     case 'right':
-      if (query.offset === Number && query.limit) {
-        (Number(query.offset) + Number(query.limit)) < data.rows.length
-      } else {
-        return false;
+      if (checkParams([query.offset, query.limit])) {
+        return (Number(query.offset) + Number(query.limit)) < dataRows.length
       }
+      return false;
+
     default:
       return false;
   }
 }
+
+
+function checkParams([offset, limit]) {
+  if (!offset && !limit) {
+    return false;
+  }
+
+  const offsetIsValid = offset.match(/[0-9]{0,3}/);
+  const limitIsValid = limit.match(/[1-9]{2}/);
+
+  return offsetIsValid && limitIsValid;
+};
 
 module.exports = setPageTurnAllowance;
