@@ -3,12 +3,12 @@ import './Table.css';
 export default function Table({data}) {
   return (
     <table>
-      <caption>Название таблицы</caption>
+      <caption>Забеги Украины</caption>
       <thead>
         <tr>
           <th>Дата</th>
           <th>Название</th>
-          <th>Количество</th>
+          <th>Участники</th>
           <th>Расстояние</th>
         </tr>
       </thead>
