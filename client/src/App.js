@@ -13,7 +13,7 @@ export default function App() {
   const [isTimeToFetchTableData, setIsTimeToFetchTableData] = useState(true);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [filterParams, setFilterParams] = useState('');
+  const [filterParams, setFilterParams] = useState('?offset=0&limit=13');
   const [tablePageOffset, setTablePageOffset] = useState(0);
   const tablePageSize = 12;
   const [allowedToTurnPage, setAllowedToTurnPage] = useState({ turnLeft: false, turnRight: false });
