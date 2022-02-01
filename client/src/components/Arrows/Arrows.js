@@ -10,8 +10,8 @@ export default function Arrows({allowedToTurnPage, changeIsTimeToTurnPage}) {
 
   return (
     <div className="arrows">
-      <button id="arrow-left" className={allowedToTurnLeft ? "arrow" : "arrow arrow-invisible" } disabled={!allowedToTurnLeft} onClick={handleClick}>{"<<"}</button>
-      <button id="arrow-right" className={allowedToTurnRight ? "arrow" : "arrow arrow-invisible"} disabled={!allowedToTurnRight} onClick={handleClick}>{">>"}</button>
+      <button id="arrow-left" className={allowedToTurnLeft ? "arrow" : "arrow arrow-invisible" } disabled={allowedToTurnLeft ? false : true} onClick={handleClick}>{"<<"}</button>
+      <button id="arrow-right" className={allowedToTurnRight ? "arrow" : "arrow arrow-invisible"} disabled={allowedToTurnRight ? false : true} onClick={handleClick}>{">>"}</button>
     </div>
   )
 }
