@@ -1,5 +1,5 @@
-export default function SubmitButton({submitDisabled, handleSubmit}) {
+export default function SubmitButton({handleSubmit}) {
   return (
-    <input className="submit-button" type="submit" value="Применить" disabled={submitDisabled} onClick={handleSubmit} />
+    <input className="submit-button" type="submit" value="Применить" onClick={handleSubmit} />
   );
 }
