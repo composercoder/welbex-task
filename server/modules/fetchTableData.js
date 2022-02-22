@@ -18,9 +18,12 @@ function fetchTableData(request, response) {
     .then((data) => {
       if (data.rows.length !== 0) {
         response.status(200).send(JSON.stringify({
-          allowedToTurnLeft: setPageTurnAllowance(request.query, data.rows, 'left'),
-          allowedToTurnRight: setPageTurnAllowance(request.query, data.rows, 'right'),
-          data: removeLastDataElement(data.rows)
+          allowedToTurnPage: {
+            allowedToTurnLeft: setPageTurnAllowance(request.query, data.rows, 'left'),
+            allowedToTurnRight: setPageTurnAllowance(request.query, data.rows, 'right'),
+          },
+          data: removeLastDataElement(data.rows),
+          error: null
         }));
         response.end();
       } else {
