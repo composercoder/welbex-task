@@ -1,8 +1,14 @@
-export default function turnPage(arrow, changeIsTimeToFetchData, tablePageOffset, changeTablePageOffset, tablePageSize) {
-  const offset = calcOffset(arrow, tablePageOffset, tablePageSize) || 0;
-  changeTablePageOffset(offset);
-  changeIsTimeToFetchData(true);
+import { useContext } from 'react';
+import createFilterParamsString from './createFilterParamsString';
+
+export default function turnPage(arrow, appState, dispatch) {
+  const offset = calcOffset(arrow, appState.tablePageOffset, appState.tablePageSize) || 0;
+
+  dispatch({ type: 'changeTablePageOffset', payload: offset});
+  createFilterParamsString(true, dispatch, appState.filterParams, offset, appState.tablePageSize);
+  dispatch({ type: 'setIsTimeToFetchTableData', payload: true});
 }
+
 
 function calcOffset(arrow, tablePageOffset, tablePageSize) {
   if (arrow === 'arrow-right') {

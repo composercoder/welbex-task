@@ -1,11 +1,16 @@
+import { useContext } from 'react';
+import { AppContext } from '../App/AppContext';
+import turnPage from '../../controller/turnPage';
 import './Arrows.css';
 
-export default function Arrows({allowedToTurnPage, changeIsTimeToTurnPage}) {
-  const allowedToTurnLeft = allowedToTurnPage.turnLeft;
-  const allowedToTurnRight = allowedToTurnPage.turnRight;
+export default function Arrows() {
+  const [ appState, dispatch ] = useContext(AppContext);
+  const allowedToTurnLeft = appState.allowedToTurnPage.turnLeft;
+  const allowedToTurnRight = appState.allowedToTurnPage.turnRight;
 
   function handleClick(event) {
-    changeIsTimeToTurnPage(event.target.id, true);
+    dispatch({ type: 'setIsTimeToTurnPage', payload: true });
+    turnPage(event.target.id, appState, dispatch);
   }
 
   return (

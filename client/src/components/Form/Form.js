@@ -1,10 +1,16 @@
-import { useState } from 'react';
-import './Form.css';
+import { useState, useEffect, useContext } from 'react';
+import { AppContext } from '../App/AppContext';
+import createFilterParamsString from '../../controller/createFilterParamsString';
+
 import Input from '../Input/Input';
 import Select from '../Select/Select';
 import SubmitButton from '../SubmitButton/SubmitButton';
 
-function Form({filterParams, createFilterParamsString, tablePageOffset, tablePageSize, isTimeToTurnPage, changeIsTimeToFetchData}) {
+import './Form.css';
+
+function Form() {
+  const [appState, dispatch] = useContext(AppContext);
+
   const [filterParameter, setFilterParameter] = useState({
     id: 'filter-parameter-select',
     selectedOption: 'name'
@@ -14,11 +20,13 @@ function Form({filterParams, createFilterParamsString, tablePageOffset, tablePag
     selectedOption: 'contains'
   });
   const [filterValue, setFilterValue] = useState('');
-  const [submitDisabled, setSubmitDisabled] = useState(false);
 
-  if (isTimeToTurnPage) {
-    handleSubmit();
-  }
+  useEffect(() => {
+    if (appState.isTimeToCreateFilterParams) {
+      createFilterParamsString(true, dispatch, appState.filterParams, appState.tablePageOffset, appState.tablePageSize, filterParameter, filterCondition, filterValue);
+    }
+
+  });
 
   function handleChange(event) {
     switch(event.target.id) {
@@ -44,8 +52,8 @@ function Form({filterParams, createFilterParamsString, tablePageOffset, tablePag
       event.preventDefault()
     }
     validateInput(filterValue);
-    createFilterParamsString(filterParameter, filterCondition, filterValue);
-    changeIsTimeToFetchData(true);
+    createFilterParamsString(false, filterParameter, filterCondition, filterValue, appState.tablePageOffset, appState.tablePageSize);
+    dispatch({ type: 'setIsTimeToFetchData', payload: true });
   }
 
   return (
@@ -54,7 +62,7 @@ function Form({filterParams, createFilterParamsString, tablePageOffset, tablePag
       <Select id="filter-parameter-select" options={[{id: "name", value: "название"}, {id: "quantity", value: "количество"}, {id: "distance", value: "расстояние"}]} handleChange={handleChange} />
       <Select id="filter-condition-select" options={[{id: "contains", value: "содержит"}, {id: "more", value: "больше"}, {id: "less", value: "меньше"}, {id: "equals", value: "равно"}]} handleChange={handleChange} />
       <Input id="filter-value-input" value={filterValue} placeholder="значение" handleChange={handleChange} />
-      <SubmitButton submitDisabled={submitDisabled} handleSubmit={handleSubmit} />
+      <SubmitButton handleSubmit={handleSubmit} />
     </form>
   );
 }

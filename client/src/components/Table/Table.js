@@ -1,6 +1,10 @@
+import { useContext } from 'react';
+import { AppContext } from '../App/AppContext';
 import './Table.css';
 
-export default function Table({data}) {
+export default function Table() {
+  const data = useContext(AppContext)[0].tableData;
+
   return (
     <table>
       <caption>Забеги Украины</caption>
