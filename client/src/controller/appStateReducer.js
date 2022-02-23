@@ -4,7 +4,7 @@ export default function appStateReducer(state, action) {
       return {...state, filterParams: action.payload };
     case 'fetchTableData':
       return {...state, tableData: action.payload.data,  error: action.payload.error,  allowedToTurnPage: action.payload.allowedToTurnPage };
-    case 'setIsTimeToFetchTableData':
+    case 'setIsTimeToFetchData':
       return {...state,  isTimeToFetchTableData: action.payload};
     case 'setLoadingState':
       return {...state, loading: action.payload};
