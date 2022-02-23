@@ -52,7 +52,16 @@ function Form() {
       event.preventDefault()
     }
     validateInput(filterValue);
-    createFilterParamsString(false, filterParameter, filterCondition, filterValue, appState.tablePageOffset, appState.tablePageSize);
+    createFilterParamsString({
+      dispatch,
+      filterParameter,
+      filterCondition,
+      filterValue,
+      prevFilterParams: null,
+      onlyChangeOffset: false,
+      tablePageOffset: appState.tablePageOffset,
+      tablePageSize: appState.tablePageSize
+    });
     dispatch({ type: 'setIsTimeToFetchData', payload: true });
   }
 
