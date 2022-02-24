@@ -27,7 +27,6 @@ export default function App() {
     if (appState.isTimeToFetchTableData) {
       fetchTableData(appState.filterParams, dispatch)
         .then(() => {
-          dispatch({ type: 'setIsTimeToFetchTableData', payload: false });
           dispatch({ type: 'resetAllIsTimes', payload: {
             isTimeToCreateFilterParams: false,
             isTimeToFetchTableData: false,
