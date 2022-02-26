@@ -3,7 +3,7 @@ function setPageTurnAllowance(query, dataRows, direction) {
   switch(direction) {
     case 'left':
       if (checkParams([query.offset, query.limit])) {
-        return (Number(query.offset) - Number(query.limit)) > 0;
+        return Number(query.offset) > 0;
       }
       return false;
 
