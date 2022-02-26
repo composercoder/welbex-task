@@ -5,7 +5,6 @@ const createFilter = require('./createFilter');
 const sendNotFound = require('./sendNotFound');
 
 function fetchTableData(request, response) {
-  console.log(request.query);
   const filter = Object.keys(request.query).length === 0 ? '' : createFilter(request.query);
   const pagination = ' OFFSET ' + (request.query.offset || 0) + ' LIMIT ' + ((+request.query.limit + 1) || 13);
 
