@@ -5,8 +5,7 @@ import './Arrows.css';
 
 export default function Arrows() {
   const [ appState, dispatch ] = useContext(AppContext);
-  const allowedToTurnLeft = appState.allowedToTurnPage.turnLeft;
-  const allowedToTurnRight = appState.allowedToTurnPage.turnRight;
+  const { allowedToTurnLeft, allowedToTurnRight } = appState.allowedToTurnPage;
 
   function handleClick(event) {
     dispatch({ type: 'setIsTimeToTurnPage', payload: true });
