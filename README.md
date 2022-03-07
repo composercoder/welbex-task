@@ -7,3 +7,5 @@ A simple table that fetches events' data from database with filter available.
 - Node.js
 - Express
 - PostgreSQL
+
+![The running events of Ukraine](Screenshot.jpg)
