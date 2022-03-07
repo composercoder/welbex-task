@@ -14,3 +14,6 @@ In the same folder you can find a dump of running_events database.
 - PostgreSQL
 
 ![The running events of Ukraine](Screenshot.jpg)
+
+**Important:** Before running this app, go to server/db/db.js and change values for 'user' and 'password'.
+In the same folder you can find a dump of running_events database.
