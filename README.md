@@ -1,4 +1,4 @@
-#  Table of Running Events
+#  Table of Running Races
 
 A simple table that fetches events' data from database with filter available.
 
